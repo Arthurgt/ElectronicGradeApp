@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class ElectronicGradeAppApplication {
 
@@ -18,7 +20,8 @@ public class ElectronicGradeAppApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
 //			createStudent(studentDAO);
-			findStudentById(studentDAO);
+//			findStudentById(studentDAO);
+			findAllStudents(studentDAO);
 		};
 	}
 
@@ -39,5 +42,13 @@ public class ElectronicGradeAppApplication {
 
 		System.out.println("Found the student");
 		System.out.println(student.toString());
+	}
+
+	private void findAllStudents(StudentDAO studentDAO) {
+		System.out.println("Finding all students");
+		List<Student> studentList = studentDAO.findAllStudents();
+
+		System.out.println("Found all students");
+		System.out.println(studentList.toString());
 	}
 }
