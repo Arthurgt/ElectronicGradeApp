@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class StudentDAOImpl implements StudentDAO {
@@ -32,7 +33,7 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public List<Student> findByLastName(String lastName) {
-        TypedQuery<Student> query = entityManager.createQuery("FROM Student WHERE lastname=:theData", Student.class);
+        TypedQuery<Student> query = entityManager.createQuery("FROM Student WHERE lastName=:theData", Student.class);
         query.setParameter("theData", lastName);
         return query.getResultList();
     }
@@ -41,5 +42,18 @@ public class StudentDAOImpl implements StudentDAO {
     public List<Student> findAllStudents() {
         TypedQuery<Student> query = entityManager.createQuery("FROM Student", Student.class);
         return query.getResultList();
+    }
+
+    @Transactional
+    @Override
+    public Student update(Student student) {
+        return entityManager.merge(student);
+    }
+
+    @Transactional
+    @Override
+    public void remove(Integer id) {
+        Student student = findById(id);
+        if(Objects.nonNull(student)) entityManager.remove(student);
     }
 }

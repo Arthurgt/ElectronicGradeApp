@@ -21,7 +21,10 @@ public class ElectronicGradeAppApplication {
 		return runner -> {
 //			createStudent(studentDAO);
 //			findStudentById(studentDAO);
-			findAllStudents(studentDAO);
+//			findAllStudents(studentDAO);
+//			findByLastName(studentDAO,"Nowak");
+//			updateStudent(studentDAO);
+			removeStudent(studentDAO);
 		};
 	}
 
@@ -50,5 +53,28 @@ public class ElectronicGradeAppApplication {
 
 		System.out.println("Found all students");
 		System.out.println(studentList.toString());
+	}
+
+	private void findByLastName(StudentDAO studentDAO, String lastName) {
+		System.out.println("Finding student with last name: " + lastName);
+		List<Student> studentList = studentDAO.findByLastName(lastName);
+
+		System.out.println("Found all students with last name " + lastName);
+		System.out.println(studentList.toString());
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+		System.out.println("Updating student");
+		Student student = studentDAO.findById(1);
+		student.setLastName("Lolek");
+		student = studentDAO.update(student);
+		System.out.println("Updated " + student.toString());
+	}
+
+	private void removeStudent(StudentDAO studentDAO) {
+		System.out.println("Removing student");
+
+		studentDAO.remove(1);
+		System.out.println("Removed student");
 	}
 }
