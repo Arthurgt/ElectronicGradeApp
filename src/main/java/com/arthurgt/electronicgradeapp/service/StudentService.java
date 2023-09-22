@@ -2,6 +2,7 @@ package com.arthurgt.electronicgradeapp.service;
 
 import com.arthurgt.electronicgradeapp.dao.StudentDAO;
 import com.arthurgt.electronicgradeapp.entity.Student;
+import com.arthurgt.electronicgradeapp.error.StudentNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,9 @@ public class StudentService {
     }
 
     public Student getStudentById(int studentId) {
+        if(studentId < 0 ) {
+            throw new StudentNotFoundException("Student id not found - " + studentId);
+        }
         return studentDAO.findById(studentId);
     }
 
