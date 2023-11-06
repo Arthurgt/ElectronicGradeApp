@@ -25,6 +25,7 @@ public class SecurityConfig {
                 configure
                         .requestMatchers(HttpMethod.GET, "/student/getAll").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.GET, "/student/getStudent/**").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.GET, "/student/hello").hasRole("EMPLOYEE")
                 );
         http.httpBasic(Customizer.withDefaults());
         http.csrf(csrf -> csrf.disable());
