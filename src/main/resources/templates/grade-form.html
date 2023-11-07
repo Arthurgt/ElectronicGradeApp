@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" th:href="@{/css/form.css}"/>
+  <meta charset="UTF-8">
+  <title>Electronic grade app</title>
+</head>
+<body>
+  <form th:action="@{/grade/processForm}" method="GET">
+    <input type="text" name="studentName" placeholder="Student Name">
+    <input type="submit"/>
+  </form>
+</body>
+</html>

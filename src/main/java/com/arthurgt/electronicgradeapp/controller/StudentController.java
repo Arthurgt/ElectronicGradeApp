@@ -20,11 +20,6 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/hello")
-    public String hello(Model theModel) {
-        return "index";
-    }
-
     @GetMapping("/getAll")
     public List<Student> getAllStudents() {
         return studentService.getAllStudents();
